@@ -1,0 +1,22 @@
+[user]
+	name = Tim Hockin
+	email = thockin@google.com
+[credential]
+	helper = cache --timeout=315360000
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	revert = checkout --
+	amend = commit --amend -a
+	curbr = rev-parse --abbrev-ref HEAD
+	root = rev-parse --show-toplevel
+	fup = fetch upstream
+	rb = rebase
+	rbup = rebase upstream/master
+	po = push origin
+	pocur = !git po $(git curbr)
+	pofcur = !git po -f $(git curbr)
+[merge]
+	conflictstyle = diff3
