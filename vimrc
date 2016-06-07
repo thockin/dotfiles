@@ -8,24 +8,29 @@ call vundle#begin()
 " 'user/repository' format
 Plugin 'gmarik/Vundle.vim'
 
-let g:go_fmt_command = "goimports"
 Plugin 'fatih/vim-go'
+let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 Plugin 'Valloric/YouCompleteMe'
 
 "Plugin 'bling/vim-airline'
+"let g:airline#extensions#default#enabled = 0
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#fnamemod = ':t'
+"let g:airline#extensions#tabline#left_sep = '**'
+"let g:airline#extensions#tabline#left_alt_sep = '|'
 
 call vundle#end()
 
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
-
-" Airline
-let g:airline#extensions#default#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#left_sep = '**'
-let g:airline#extensions#tabline#left_alt_sep = '|'
 
 set bg=dark
 set ttyfast
