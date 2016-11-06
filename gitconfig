@@ -9,7 +9,7 @@
 	st = status
 	br = branch
 	revert = checkout --
-	amend = commit --amend -a
+	amend = commit --amend
 	curbr = rev-parse --abbrev-ref HEAD
 	root = rev-parse --show-toplevel
 	fup = fetch upstream
@@ -23,3 +23,4 @@
 	copr = "!f() { git fetch upstream pull/$1/head:pr-$1; git co pr-$1;}; f"
 [merge]
 	conflictstyle = diff3
+

@@ -16,13 +16,15 @@ function count {
   done
 }
 
-function titlebar {
-  unset PROMPT_COMMAND
-  echo -ne "\033]2;$*\a"
+function defaultps1() {
+  PS1='\[\e]0;${TITLEBAR_PREFIX} \w\a\]\u@\h:\w\$ '
 }
+defaultps1 # call it
 
-function titlebar_reset {
-  export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+TITLEBAR_PREFIX=""
+function titlebar {
+  TITLEBAR_PREFIX="$*"
+  echo -ne "\033]2;$*\a"
 }
 
 function g4vi {
@@ -30,13 +32,6 @@ function g4vi {
   vi "$@"
 }
 alias p4vi=g4vi
-
-# old version
-#function setps1 {
-#  PS1="\$(pwd | awk -F / '{
-#      printf(\"%s %s\", \$6, gensub(\"^.*google3/?\", \"//\", \"g\"));
-#  }')\$ "
-#}
 
 function do_p4_ps1() {
   X=$(pwd | awk -F / '{
@@ -74,7 +69,7 @@ function gitps1() {
   PROMPT_COMMAND=gitps1
 
   if ! git root >/dev/null 2>&1; then
-    PS1="\u@\h:\w\$ "
+    defaultps1
     return
   fi
 
@@ -84,19 +79,30 @@ function gitps1() {
   H=$(hostname | cut -f1 -d.)
   W=$(realpath . | sed "s|$(git root)/\?|/|")
 
-  PS1="\[$(color 6)\]$U@$H \[$(color 1)\]$R \[$(color 3)\]$B \[$(color 6)\]$W\[$(nocolor)\]\$ "
+  #TODO: abstract the prefix, which sets titlebar and is duplicated
+  #TODO: with defaultps1
+  PS1='\[\e]0;${TITLEBAR_PREFIX} \w\a\]\[$(color 6)\]$U@$H \[$(color 1)\]$R \[$(color 3)\]$B \[$(color 6)\]$W\[$(nocolor)\]\$ '
 }
 
 # Define some handy variables
 export CVS_RSH="ssh"
+export P4CONFIG=.p4config
+#export P4DIFF=/google/src/files/head/depot/google3/devtools/scripts/p4diff
+#export P4MERGE=/home/build/public/eng/perforce/mergep4.tcl
+export P4EDITOR=$EDITOR
 export PRINTER=tahiti-color
 export PRINTER2=waikiki-color
 export ENV=$HOME/.bashrc
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
+#export G4MULTIDIFF=1
+#export P4DIFF="vim -f '+so /home/thockin/.vim/p4diff.vim'"
 
-export PATH=~/src/go/bin:$PATH
+export PATH=~/src/go/bin:/usr/local/go/bin:$PATH
 export GOPATH=~/src/go
 function KUBEGOPATH {
   export GOPATH=`pwd`/Godeps/_workspace:`pwd`/_output/local/go:$GOPATH
 }
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/thockin/google-cloud-sdk/path.bash.inc'
