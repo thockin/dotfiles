@@ -1,0 +1,5 @@
+# mappings for "page up" and "page down" to step to the beginning/end
+# of the history
+"\e[5~": beginning-of-history
+"\e[6~": end-of-history
+
