@@ -25,5 +25,3 @@
 	conflictstyle = diff3
 [http "https://gopkg.in"]
 	followRedirects = true
-
-
