@@ -50,9 +50,11 @@ set shiftwidth=4                " How much to shoft text
 set ai                          " Auto-indent
 syn on                          " Syntax highlighting
 set textwidth=78                " Default text width
+set formatoptions+=t            " Textwidth formatting
 set backspace=indent,eol,start  " Makes backspace key more powerful
 set autowrite                   " Automatically save before :next, :make etc.
 set cursorline                  " Highlight the current line
+set formatoptions+=j            " Elide comment-leader when joining comment lines
 
 " Keyboard shortcuts
 nnoremap % :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
@@ -73,7 +75,7 @@ au BufRead,BufNewFile *.md set filetype=markdown
 " go
 au FileType go setl tabstop=4
 au FileType go setl shiftwidth=4
-au FileType go setl textwidth=1000
+au FileType go setl formatoptions-=t  " No textwidth formatting
 au FileType go setl number
 au FileType go setl nolist
 
@@ -84,6 +86,11 @@ au FileType yaml setl shiftwidth=2
 au FileType yaml setl expandtab
 au FileType yaml setl number
 
+" sh
+au FileType sh setl expandtab
+au FileType sh setl tabstop=4
+au FileType sh setl shiftwidth=4
+au FileType sh setl list
 
 """-au FileType python setlocal errorformat=%+P[%f],%t:\ %#%l:%m
 """-au FileType python setlocal makeprg=/home/build/static/projects/gpylint/gpylint.par\ %
@@ -114,47 +121,6 @@ au FileType yaml setl number
 """- "autocmd BufRead *.c,*.h,*.C,*.cc set foldmethod=syntax
 """-augroup END
 """-
-"""-set hlsearch
-"""-
-"""-set bs=2		" allow backspacing over everything in insert mode
-"""-
-"""-"set exrc	       " allow exrc per dir
-"""-"set secure	       " dont allow bad stuff in per-dir exrc
-"""-
-"""-"set cmdheight=3
-"""-"set confirm            " To get a dialog when a command fails
-"""-
-"""-set laststatus=0
-"""-set backup		" keep a backup file
-"""-set backupdir=./.backup,/tmp,.
-"""-
-"""-set statusline=
-"""-set swapsync=
-"""-
-"""-"map <F9> :set paste<CR>
-"""-"map <F10> :set nopaste<CR>
-"""-
-"""-" shortcuts to jump around quickfixes.  zo opens the fold if any under the
-"""-" match.
-"""-map <F2> :cp<CR>zv
-"""-map <S-F2> :cpf<CR>zv
-"""-map <F3> :cc<CR>zv
-"""-map <F4> :cn<CR>zv
-"""-map <S-F4> :cnf<CR>zv
-"""-map <S-F3> :make<CR>:cclose<CR>:copen<CR><C-W><C-P>
-"""-map <F5> :qa<CR>
-"""-map <F6> :diffget<CR>
-"""-" In a perforce merge-edit, split the 3 bits into a 3-way-diff.
-"""-map <F7> ?^>>>>?<CR>j"ay/^====/<CR>//<CR>j"by//<CR>//<CR>j"cy/^<<<</<CR>:new c.tmp<CR>"cpkdd:diffthis<CR>:vnew b.tmp<CR>"bpkdd:diffthis<CR>:vnew a.tmp<CR>"apkdd<CR>:diffthis<CR>
-"""-" Select one of 3 ways of 3 way diff, and merge back into document.
-"""-map <F8> 1G"ayG:bdel! a.tmp<CR>:bdel! b.tmp<CR>:bdel! c.tmp<CR>?^>>>><CR>d/^<<<<<CR>dd<CR>"aP<CR>
-"""-map <F10> :make<CR>:cclose<CR>:copen<CR><C-W><C-P>
-"""-
-"""-
-"""-augroup filetypedetect
-"""-au BufNewFile,BufRead /tmp/g4_*,*p4-change*,*p4-client* call EnterPerforceFile()
-"""-augroup END
-"""-" END Perforce editing help
 
 source ~/.exrc
 
