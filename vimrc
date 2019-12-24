@@ -55,6 +55,7 @@ set backspace=indent,eol,start  " Makes backspace key more powerful
 set autowrite                   " Automatically save before :next, :make etc.
 set cursorline                  " Highlight the current line
 set formatoptions+=j            " Elide comment-leader when joining comment lines
+set maxmempattern=4000          " Let plugins use more memory for things like syntax
 
 " Keyboard shortcuts
 nnoremap % :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
