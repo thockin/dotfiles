@@ -62,6 +62,8 @@ nnoremap % :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap ww :wincmd w<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+nnoremap gb [{
+nnoremap ge ]}
 "nnoremap n nzzzv
 "nnoremap N Nzzzv
 
