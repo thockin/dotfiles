@@ -10,7 +10,8 @@
 	br = branch
 	revert = checkout --
 	amend = commit --amend
-	am = commit --amend
+	amx = commit --amend
+	ama = commit --amend -a
 	curbr = rev-parse --abbrev-ref HEAD
 	root = rev-parse --show-toplevel
 	fup = fetch upstream

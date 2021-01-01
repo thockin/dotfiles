@@ -59,6 +59,7 @@ function my_ps1() {
   _titlebar "git $R$W"
 }
 alias gitps1=my_ps1  # for back-compat
+gitps1  # Always run it
 
 # My environment variables.
 export CVS_RSH="ssh"
@@ -70,7 +71,7 @@ export VISUAL=/usr/bin/vim
 export TERM=xterm
 
 # Golang stuff
-export PATH=~/src/go/bin:$PATH
+export PATH=~/src/go/bin:/usr/local/go/bin:$PATH
 export GOPATH=~/src/go
 function KUBEGOPATH {
   export GOPATH=`pwd`/Godeps/_workspace:`pwd`/_output/local/go:$GOPATH
@@ -117,3 +118,18 @@ export P4EDITOR=$EDITOR
 
 # The next line updates PATH for the Google Cloud SDK.
 source ~thockin/google-cloud-sdk/path.bash.inc
+
+function set_mouse_buttons() {
+  # Change the thumb button (8) to be middle-click (2)
+  local id=$(xinput list --id-only "pointer:Logitech MX Vertical")
+  if [ -n "$id" ]; then
+    local map=($(xinput get-button-map "$id" | sed 's/ 8 / 2 /'))
+    xinput set-button-map "$id" "${map[@]}"
+  fi
+}
+set_mouse_buttons
+
+function set_webcam_zoom() {
+    v4l2-ctl -d /dev/video2 --set-ctrl=zoom_absolute=150
+}
+set_webcam_zoom
