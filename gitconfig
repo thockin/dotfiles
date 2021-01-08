@@ -24,6 +24,7 @@
 	track = "!f() { git co -b $1 origin/$1; }; f"
 	copr = "!f() { git fetch upstream pull/$1/head:pr-$1; git co pr-$1;}; f"
 	wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+	my = "!f() { git log --reverse --format='format:%C(auto)%H  %s' upstream/master...HEAD; echo;}; f"
 [merge]
 	conflictstyle = diff3
 [http "https://gopkg.in"]
