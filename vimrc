@@ -22,15 +22,9 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
 let g:go_auto_sameids = 1
+let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
 
 Plugin 'Valloric/YouCompleteMe'
-
-"Plugin 'bling/vim-airline'
-"let g:airline#extensions#default#enabled = 0
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#fnamemod = ':t'
-"let g:airline#extensions#tabline#left_sep = '**'
-"let g:airline#extensions#tabline#left_alt_sep = '|'
 
 call vundle#end()
 
@@ -56,6 +50,13 @@ set autowrite                   " Automatically save before :next, :make etc.
 set cursorline                  " Highlight the current line
 set formatoptions+=j            " Elide comment-leader when joining comment lines
 set maxmempattern=4000          " Let plugins use more memory for things like syntax
+set foldmethod=indent
+set nofoldenable
+set foldlevel=5
+
+" Popup menu colors 
+highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
+highlight PmenuSel ctermfg=15 ctermbg=4 guifg=#ffffff guibg=#000000
 
 " Keyboard shortcuts
 nnoremap % :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
@@ -64,8 +65,8 @@ nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 nnoremap gb [{
 nnoremap ge ]}
-"nnoremap n nzzzv
-"nnoremap N Nzzzv
+nnoremap gt :GoDefType<CR>
+" gd is already mapped to :GoDef
 
 if has("autocmd")
     " When editing a file, always jump to the last cursor position
@@ -129,8 +130,6 @@ source ~/.exrc
 
 """-:set textwidth=78
 """-:set expandtab
-"""-:highlight clear SpecialKey
-"""-:highlight SpecialKey ctermfg=DarkGrey guibg=DarkGrey
 """-:set fileformats=unix,dos
 """-:set viminfo='50,\"200
 """-:set history=50
