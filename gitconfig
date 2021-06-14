@@ -14,7 +14,9 @@
 	ama = commit --amend -a
 	curbr = rev-parse --abbrev-ref HEAD
 	root = rev-parse --show-toplevel
-	mbr = "!f() { git remote set-head upstream --auto >/dev/null && git symbolic-ref refs/remotes/upstream/HEAD | cut -f4 -d/; }; f"
+	set-upstream = remote set-head upstream
+	reset-upstream = remote set-head upstream --auto
+	mbr = "!f() { git symbolic-ref refs/remotes/upstream/HEAD | cut -f4 -d/; }; f"
 	fup = fetch upstream
 	rb = rebase
 	rbup = "!f() { git rebase upstream/$(git mbr) \"$@\"; }; f"

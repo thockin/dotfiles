@@ -116,6 +116,8 @@ export P4EDITOR=$EDITOR
 #export G4MULTIDIFF=1
 #export P4DIFF="vim -f '+so /home/thockin/.vim/p4diff.vim'"
 
+export DOCKER_CLI_EXPERIMENTAL=enabled
+
 # The next line updates PATH for the Google Cloud SDK.
 source ~thockin/google-cloud-sdk/path.bash.inc
 

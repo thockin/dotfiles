@@ -54,15 +54,21 @@ set foldmethod=indent
 set nofoldenable
 set foldlevel=5
 
-" Popup menu colors 
+" Popup menu colors
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
 highlight PmenuSel ctermfg=15 ctermbg=4 guifg=#ffffff guibg=#000000
 
+" Go error messages
+highlight SpellBad term=standout cterm=bold ctermfg=7 ctermbg=1 guifg=White guibg=Red
+
 " Keyboard shortcuts
 nnoremap % :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+" Jump to next window
 nnoremap ww :wincmd w<CR>
+" Jump to next/prev file
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+" Go to begin/end
 nnoremap gb [{
 nnoremap ge ]}
 nnoremap gt :GoDefType<CR>
