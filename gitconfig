@@ -16,7 +16,8 @@
 	root = rev-parse --show-toplevel
 	set-upstream = remote set-head upstream
 	reset-upstream = remote set-head upstream --auto
-	mbr = "!f() { git symbolic-ref refs/remotes/upstream/HEAD | cut -f4 -d/; }; f"
+	head = "!f() { if [ -z \"$1\" ]; then echo 'error: no remote specified' >&2; return 1; fi; git symbolic-ref refs/remotes/$1/HEAD; }; f"
+	mbr = "!f() { if ! git head upstream >/dev/null 2>&1; then git reset-upstream; fi; set -o pipefail; git head upstream | cut -f4 -d/; }; f"
 	fup = fetch upstream
 	rb = rebase
 	rbup = "!f() { git rebase upstream/$(git mbr) \"$@\"; }; f"
@@ -24,8 +25,8 @@
 	pocur = !git po $(git curbr)
 	pofcur = !git po -f $(git curbr)
 	wdiff = diff --color-words
-	track = "!f() { git fetch origin $1 && git co -b $1 origin/$1; }; f"
-	copr = "!f() { git fetch upstream pull/$1/head:pr-$1; git co pr-$1;}; f"
+	track = "!f() { if [ -z \"$1\" ]; then echo 'error: no branch specified' >&2; return 1; fi; git fetch origin $1 && git co -b $1 origin/$1; }; f"
+	copr = "!f() { if [ -z \"$1\" ]; then echo 'error: no PR specified' >&2; return 1; fi; git fetch upstream pull/$1/head:pr-$1; git co pr-$1;}; f"
 	wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
 	my = "!f() { git log --reverse --format='format:%C(auto)%H  %s' upstream/master..HEAD; echo;}; f"
 [merge]
