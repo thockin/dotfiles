@@ -50,12 +50,13 @@ function my_ps1() {
   fi
 
   B=$(git curbr)
+  S=$(git rev-parse --short=5 HEAD)
   U=$USER
   R=$(basename $(git root))
   H=$(hostname | cut -f1 -d.)
   W=$(realpath . | sed "s|$(git root)/\?|/|")
 
-  PS1="\[$(_color 6)\]$U@$H \[$(_color 1)\]$R \[$(_color 3)\]$B \[$(_color 6)\]$W\[$(_nocolor)\]\$ "
+  PS1="\[$(_color 6)\]$H \[$(_color 1)\]$R \[$(_color 3)\]$S $B \[$(_color 6)\]$W\[$(_nocolor)\]\$ "
   _titlebar "git $R$W"
 }
 alias gitps1=my_ps1  # for back-compat
@@ -115,23 +116,9 @@ export P4CONFIG=.p4config
 export P4EDITOR=$EDITOR
 #export G4MULTIDIFF=1
 #export P4DIFF="vim -f '+so /home/thockin/.vim/p4diff.vim'"
-
 export DOCKER_CLI_EXPERIMENTAL=enabled
 
 # The next line updates PATH for the Google Cloud SDK.
 source ~thockin/google-cloud-sdk/path.bash.inc
 
-function set_mouse_buttons() {
-  # Change the thumb button (8) to be middle-click (2)
-  local id=$(xinput list --id-only "pointer:Logitech MX Vertical")
-  if [ -n "$id" ]; then
-    local map=($(xinput get-button-map "$id" | sed 's/ 8 / 2 /'))
-    xinput set-button-map "$id" "${map[@]}"
-  fi
-}
-set_mouse_buttons
-
-function set_webcam_zoom() {
-    v4l2-ctl -d /dev/video2 --set-ctrl=zoom_absolute=150
-}
-set_webcam_zoom
+~thockin/bin/usb-hotplug.sh
