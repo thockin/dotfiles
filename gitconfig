@@ -27,9 +27,12 @@
 	wdiff = diff --color-words
 	track = "!f() { if [ -z \"$1\" ]; then echo 'error: no branch specified' >&2; return 1; fi; git fetch origin $1 && git co -b $1 origin/$1; }; f"
 	copr = "!f() { if [ -z \"$1\" ]; then echo 'error: no PR specified' >&2; return 1; fi; git fetch upstream pull/$1/head:pr-$1; git co pr-$1;}; f"
-	wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+	wip = for-each-ref --sort='committerdate:iso8601' --format=' %(color:green)%(committerdate:relative)%09%(color:white)%(refname:short)' refs/heads
 	my = "!f() { git log --reverse --format='format:%C(auto)%H  %s' upstream/master..HEAD; echo;}; f"
 [merge]
 	conflictstyle = diff3
+	renamelimit = 4096
 [http "https://gopkg.in"]
 	followRedirects = true
+[advice]
+	detachedHead = false

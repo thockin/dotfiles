@@ -21,8 +21,9 @@ let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
-let g:go_auto_sameids = 1
+let g:go_auto_sameids = 0  " FIXME: breaks visual selections
 let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
+"let g:go_debug=['lsp', 'shell-commands']
 
 Plugin 'Valloric/YouCompleteMe'
 
@@ -50,9 +51,15 @@ set autowrite                   " Automatically save before :next, :make etc.
 set cursorline                  " Highlight the current line
 set formatoptions+=j            " Elide comment-leader when joining comment lines
 set maxmempattern=4000          " Let plugins use more memory for things like syntax
-set foldmethod=indent
+set foldmethod=indent " FIXME: "syntax" is better but suuuuuuper slow
 set nofoldenable
-set foldlevel=5
+set foldlevel=50
+set timeoutlen=1000 ttimeoutlen=0 " kill some flicker
+set signcolumn=number           " show errors in the line-num column
+
+" Center search results
+nnoremap n nzz
+nnoremap N Nzz
 
 " Popup menu colors
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
