@@ -118,4 +118,4 @@ export DOCKER_CLI_EXPERIMENTAL=enabled
 # The next line updates PATH for the Google Cloud SDK.
 source ~thockin/google-cloud-sdk/path.bash.inc
 
-~thockin/bin/usb-hotplug.sh
+[ -f ~/bin/usb-hotplug.sh ] && ~/bin/usb-hotplug.sh
