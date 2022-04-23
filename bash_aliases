@@ -72,11 +72,8 @@ export VISUAL=/usr/bin/vim
 export TERM=xterm
 
 # Golang stuff
-export PATH=~/src/go/bin:/usr/local/go/bin:$PATH
-export GOPATH=~/src/go
-function KUBEGOPATH {
-  export GOPATH=`pwd`/Godeps/_workspace:`pwd`/_output/local/go:$GOPATH
-}
+export GOPATH=~/go
+export PATH=$GOAPTH/bin:/usr/local/go/bin:$PATH
 
 ## Google perforce-related stuff
 function g4vi {
