@@ -73,7 +73,7 @@ export TERM=xterm
 
 # Golang stuff
 export GOPATH=~/go
-export PATH=$GOAPTH/bin:/usr/local/go/bin:$PATH
+export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
 
 ## Google perforce-related stuff
 function g4vi {
