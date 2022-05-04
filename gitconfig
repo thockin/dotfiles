@@ -20,7 +20,7 @@
 	mbr = "!f() { if ! git head upstream >/dev/null 2>&1; then git reset-upstream; fi; set -o pipefail; git head upstream | cut -f4 -d/; }; f"
 	fup = fetch upstream
 	rb = rebase
-	rbup = "!f() { git rebase upstream/$(git mbr) \"$@\"; }; f"
+	rbup = "!f() { echo \"Rebasing onto $(git mbr)\"; git rebase upstream/$(git mbr) \"$@\"; }; f"
 	po = push origin
 	pocur = !git po $(git curbr)
 	pofcur = !git po -f $(git curbr)
