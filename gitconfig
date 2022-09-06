@@ -1,8 +1,9 @@
 [user]
 	name = Tim Hockin
 	email = thockin@google.com
+	signingkey = ssh-ed25519 KEY EMAIL
 [credential]
-	helper = cache --timeout=315360000
+	helper = cache --timeout=360000
 [alias]
 	co = checkout
 	ci = commit
@@ -38,3 +39,13 @@
 	detachedHead = false
 [rerere]
 	enabled = false
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /home/thockin/.ssh/allowed_signers
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[log]
+	showSignature = true
