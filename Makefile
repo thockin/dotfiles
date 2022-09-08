@@ -3,7 +3,7 @@ all:
 
 FILES = bash_aliases \
 	gitconfig \
-	ssh/allowed_signers
+	ssh/allowed_signers \
 	inputrc \
 	exrc \
 	vimrc
