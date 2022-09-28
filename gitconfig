@@ -39,13 +39,14 @@
 	detachedHead = false
 [rerere]
 	enabled = false
-[gpg]
-	format = ssh
-[gpg "ssh"]
-	allowedSignersFile = /home/thockin/.ssh/allowed_signers
+[gc]
+	autoDetach = false
+	pruneExpire = now
 [commit]
 	gpgsign = true
 [tag]
 	gpgsign = true
-[log]
-	showSignature = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /home/thockin/.ssh/allowed_signers
