@@ -16,6 +16,10 @@ function count {
   done
 }
 
+function field {
+  awk "{print \$${1}}"
+}
+
 ## General environment setup stuff
 function _titlebar {
   echo -ne "\033]2;"$@"\a"

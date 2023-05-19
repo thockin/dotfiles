@@ -27,7 +27,7 @@ let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
 "let g:go_debug=['lsp', 'shell-commands']
 
 Plugin 'Valloric/YouCompleteMe'
-let g:ycm_gopls_binary_path = "gopls" " use $PATH
+let g:ycm_gopls_binary_path = 'gopls' " use $PATH
 
 call vundle#end()
 
@@ -52,7 +52,7 @@ set backspace=indent,eol,start  " Makes backspace key more powerful
 set autowrite                   " Automatically save before :next, :make etc.
 set cursorline                  " Highlight the current line
 set formatoptions+=j            " Elide comment-leader when joining comment lines
-set maxmempattern=4000          " Let plugins use more memory for things like syntax
+set maxmempattern=10000         " Let plugins use more memory for things like syntax
 set foldmethod=indent " FIXME: "syntax" is better but suuuuuuper slow
 set nofoldenable
 set foldlevel=50
@@ -165,6 +165,6 @@ source ~/.exrc
 """-:set textwidth=78
 """-:set expandtab
 """-:set fileformats=unix,dos
-"""-:set viminfo='50,\"200
+"""-:set viminfo='50,<200,/100
 """-:set history=50
 
