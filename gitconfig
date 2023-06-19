@@ -1,7 +1,8 @@
 [user]
 	name = Tim Hockin
 	email = thockin@google.com
-	signingkey = ssh-ed25519 KEY EMAIL
+[include]
+	path = ~/.gitconfig.local
 [alias]
 	co = checkout
 	ci = commit
@@ -11,7 +12,7 @@
 	amend = commit --amend
 	amx = commit --amend
 	ama = commit --amend -a
-	curbr = rev-parse --abbrev-ref HEAD
+    curbr = "!f() { if [ ! -f .git/rebase-merge/head-name ]; then git rev-parse --abbrev-ref HEAD; else echo -n \"rb($(basename \"$(cat .git/rebase-merge/head-name)\")\"; if [ -f .git/rebase-merge/stopped-sha ]; then echo -n ',stopped'; fi; if (( $(git diff --name-only --diff-filter=U --relative | wc -l) != 0 )); then echo -n ',conflict'; fi; echo ')'; fi }; f"
 	root = rev-parse --show-toplevel
 	set-upstream = remote set-head upstream
 	reset-upstream = remote set-head upstream --auto
@@ -54,5 +55,3 @@
 	required = true
 [init]
 	defaultBranch = main
-[credential]
-	helper = cache --timeout 3600

@@ -43,9 +43,19 @@ function color() {
 }
 
 function _default_ps1 {
-  PS1="\[\e]0;\u@\h: \w\a\]\u@\h:\w\$ "
+  local lvl=""
+  if (( "$SHLVL" != 1 )); then
+      lvl="shlvl=$SHLVL "
+  fi
+  PS1="${lvl}\[\e]0;\u@\h: \w\a\]\u@\h:\w\$ "
 }
 function my_ps1() {
+  if [ -n "$DEMOSH" ]; then
+      unset PROMPT_COMMAND
+      PS1='\n\$ '
+      return
+  fi
+
   PROMPT_COMMAND=my_ps1
 
   if ! git root >/dev/null 2>&1; then
@@ -53,18 +63,36 @@ function my_ps1() {
     return
   fi
 
-  B=$(git curbr)
-  S=$(git rev-parse --short=5 HEAD)
-  U=$USER
-  R=$(basename $(git root))
-  H=$(hostname | cut -f1 -d.)
-  W=$(realpath . | sed "s|$(git root)/\?|/|")
+  # Print shell-level if not 0
+  local L=""
+  if (( "$SHLVL" != 1 )); then
+      L="shlvl=$SHLVL "
+  fi
 
-  PS1="\[$(_color 6)\]$H \[$(_color 1)\]$R \[$(_color 3)\]$S $B \[$(_color 6)\]$W\[$(_nocolor)\]\$ "
+  # Notes
+  local notes=()
+  if [ -n "${PS1_NOTE:-}" ]; then
+      notes+=("${PS1_NOTE}")
+  fi
+  local N=""
+  if (( "${#notes[@]}" != 0 )); then
+      N="($(IFS=','; echo "${notes[*]}")) "
+  fi
+
+  local H=$(hostname | cut -f1 -d.)
+  local R=$(basename $(git root))
+  local S=$(git rev-parse --short=5 HEAD 2>/dev/null || echo "<no sha>")
+  local B=$(git curbr 2>/dev/null)
+  local D=$(realpath . | sed "s|$(git root)/\?|/|")
+
+  PS1="\[$(_color 6)\]$L$H \[$(_color 1)\]$R \[$(_color 3)\]$S $B $N\[$(_color 6)\]$D\[$(_nocolor)\]\$ "
   _titlebar "git $R$W"
 }
 alias gitps1=my_ps1  # for back-compat
 gitps1  # Always run it
+
+# Run a demo shell
+alias demosh="DEMOSH=1 bash"
 
 # My environment variables.
 export CVS_RSH="ssh"
