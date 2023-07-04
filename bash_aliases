@@ -104,8 +104,8 @@ export VISUAL=/usr/bin/vim
 export TERM=xterm
 
 # Golang stuff
-export GOPATH=~/go
-export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
+export GOPATH="$HOME/go"
+export PATH="$HOME/bin:$GOPATH/bin:/usr/local/go/bin:$PATH"
 
 ## Google perforce-related stuff
 function g4vi {

@@ -23,6 +23,7 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
 let g:go_auto_sameids = 0  " FIXME: breaks visual selections
 let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
+let g:go_gopls_enabled = 1
 "let g:go_gopls_options = ["-rpc.trace",  "-logfile=/tmp/gopls.log", "-debug=localhost:8099"]
 "let g:go_debug=['lsp', 'shell-commands']
 
@@ -53,7 +54,7 @@ set autowrite                   " Automatically save before :next, :make etc.
 set cursorline                  " Highlight the current line
 set formatoptions+=j            " Elide comment-leader when joining comment lines
 set maxmempattern=10000         " Let plugins use more memory for things like syntax
-set foldmethod=indent " FIXME: "syntax" is better but suuuuuuper slow
+set foldmethod=indent           " FIXME: "syntax" is better but suuuuuuper slow
 set nofoldenable
 set foldlevel=50
 set timeoutlen=1000 ttimeoutlen=0 " kill some flicker
