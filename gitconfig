@@ -37,6 +37,7 @@
 	followRedirects = true
 [advice]
 	detachedHead = false
+	skippedCherryPicks = false
 [rerere]
 	enabled = false
 [gpg]
