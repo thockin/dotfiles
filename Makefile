@@ -24,3 +24,9 @@ pull:
 			cat ~/.$$f > $$f; \
 		fi; \
 	done
+
+diff:
+	@for f in $(FILES); do \
+		diff -uN ~/.$$f $$f; \
+	done
+
