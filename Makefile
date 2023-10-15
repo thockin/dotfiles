@@ -7,7 +7,8 @@ FILES = \
 	ssh/allowed_signers \
 	inputrc \
 	exrc \
-	vimrc
+	vimrc \
+	config/dlv/config.yml
 
 install:
 	@for f in $(FILES); do \
@@ -21,6 +22,7 @@ pull:
 	@for f in $(FILES); do \
 		if ! diff ~/.$$f $$f >/dev/null; then \
 			echo "ingesting $$f"; \
+			mkdir -p $$(dirname $$f); \
 			cat ~/.$$f > $$f; \
 		fi; \
 	done
