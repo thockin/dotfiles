@@ -14,6 +14,7 @@ install:
 	@for f in $(FILES); do \
 		if ! diff -N ~/.$$f $$f >/dev/null; then \
 			echo "replacing ~/.$$f"; \
+			mkdir -p ~/.$$(dirname $$f); \
 			cat $$f > ~/.$$f; \
 		fi; \
 	done
