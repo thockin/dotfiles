@@ -7,7 +7,7 @@ call vundle#begin()
 " This is the Vundle package, which can be found on GitHub.
 " For GitHub repos, you specify plugins using the
 " 'user/repository' format
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'fatih/vim-go'
 let g:go_fmt_command = "goimports"
