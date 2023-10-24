@@ -8,6 +8,7 @@ FILES = \
 	inputrc \
 	exrc \
 	vimrc \
+	vi/wordlist \
 	config/dlv/config.yml
 
 install:
