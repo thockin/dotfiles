@@ -27,6 +27,7 @@ source-list-line-count: 10
 # Provided aliases will be added to the default aliases for a given command.
 aliases:
   display: ["disp"]
+  help: ["?"]
 
 # Define sources path substitution rules. Can be used to rewrite a source path stored
 # in program's debug information, if the sources were moved to a different place
