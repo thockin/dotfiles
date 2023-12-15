@@ -10,13 +10,13 @@
 # source-list-line-color: 34
 
 # Uncomment the following lines to change the colors used by syntax highlighting.
-#source-list-line-color: ""
-#source-list-keyword-color: "\x1b[0m"
-#source-list-string-color: "\x1b[92m"
-#source-list-number-color: "\x1b[0m"
-#source-list-comment-color: "\x1b[95m"
-#source-list-arrow-color: "\x1b[93m"
-source-list-tab-color: "\x1b[93m"
+source-list-arrow-color: "\x1b[1;36m"
+source-list-line-color: "\x1b[0;33m"
+source-list-tab-color: "\x1b[2;37m"
+source-list-comment-color: "\x1b[0;36m"
+source-list-keyword-color: "\x1b[0;34m"
+source-list-string-color: "\x1b[0;35m"
+source-list-number-color: "\x1b[0;32m"
 
 tab: "... "
 
@@ -28,6 +28,7 @@ source-list-line-count: 10
 aliases:
   display: ["disp"]
   help: ["?"]
+  down: ["do"]
 
 # Define sources path substitution rules. Can be used to rewrite a source path stored
 # in program's debug information, if the sources were moved to a different place
