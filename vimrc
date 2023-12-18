@@ -30,6 +30,9 @@ let g:go_gopls_enabled = 1
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_gopls_binary_path = 'gopls' " use $PATH
 
+Plugin 'spf13/vim-autoclose'
+let g:autoclose_vim_commentmode = 1
+
 call vundle#end()
 
 filetype plugin indent on       " Re-enable filetype detection
