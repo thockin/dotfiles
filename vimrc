@@ -32,6 +32,7 @@ let g:ycm_gopls_binary_path = 'gopls' " use $PATH
 
 Plugin 'spf13/vim-autoclose'
 let g:autoclose_vim_commentmode = 1
+let g:autoclose_on = 1
 
 call vundle#end()
 

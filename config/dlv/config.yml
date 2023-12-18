@@ -39,10 +39,10 @@ substitute-path:
   # - {from: path, to: path}
 
 # Maximum number of elements loaded from an array.
-# max-array-values: 64
+max-array-values: 4
 
 # Maximum loaded string length.
-# max-string-len: 64
+max-string-len: 256
 
 # Output evaluation.
 max-variable-recurse: 2
