@@ -24,6 +24,7 @@ let g:go_highlight_generate_tags = 1
 let g:go_auto_sameids = 0  " FIXME: breaks visual selections
 let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
 let g:go_gopls_enabled = 1
+nnoremap gp :GoDefPop<CR>
 "let g:go_gopls_options = ["-rpc.trace",  "-logfile=/tmp/gopls.log", "-debug=localhost:8099"]
 "let g:go_debug=['lsp', 'shell-commands']
 
