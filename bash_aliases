@@ -50,6 +50,11 @@ function _default_ps1 {
   PS1="${lvl}\[\e]0;\u@\h: \w\a\]\u@\h:\w\$ "
 }
 function my_ps1() {
+  local err=$?
+  #if [ $err != 0 ]; then
+  #    play ~/alert.wav >/dev/null 2>&1 &
+  #fi
+
   if [ -n "$DEMOSH" ]; then
       unset PROMPT_COMMAND
       PS1='\n\$ '
@@ -61,6 +66,12 @@ function my_ps1() {
   if ! git root >/dev/null 2>&1; then
     _default_ps1
     return
+  fi
+
+  # Change color in case of errors
+  local HC=6 # yellow
+  if [ $err != 0 ]; then
+      HC=4 # red
   fi
 
   # Print shell-level if not 0
@@ -85,7 +96,7 @@ function my_ps1() {
   local B=$(git curbr 2>/dev/null)
   local D=$(realpath . | sed "s|$(git root)/\?|/|")
 
-  PS1="\[$(_color 6)\]$L$H \[$(_color 1)\]$R \[$(_color 3)\]$S $B $N\[$(_color 6)\]$D\[$(_nocolor)\]\$ "
+  PS1="\[$(_color $HC)\]$L$H \[$(_color 1)\]$R \[$(_color 3)\]$S $B $N\[$(_color 6)\]$D\[$(_nocolor)\]\$ "
   _titlebar "git $R$W"
 }
 alias gitps1=my_ps1  # for back-compat
