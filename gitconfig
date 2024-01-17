@@ -30,6 +30,8 @@
 	wip = for-each-ref --sort='committerdate:iso8601' --format=' %(color:green)%(committerdate:relative)%09%(color:white)%(refname:short)' refs/heads
 	my = "!f() { git log --reverse --no-show-signature --format='format:%C(auto)%h  %s' upstream/$(git mbr)..HEAD; echo;}; f"
 	unstage = restore --staged
+[core]
+	editor="vim +0"
 [merge]
 	conflictstyle = diff3
 	renamelimit = 4096
