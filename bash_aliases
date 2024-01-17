@@ -32,46 +32,55 @@ function titlebar {
 function _color() {
   tput setf $1
 }
-function _nocolor() {
+function _term_reset() {
   tput sgr0
 }
 function color() {
   _color $1
   shift
   echo "$@"
-  _nocolor
+  _term_reset
 }
 
+function _tput_if_set {
+  for arg; do
+      tput "$arg"
+  done
+}
 function _default_ps1 {
+  err="$1"
+
+  local HC=9 # color = white
+  local HF=() # formatting = none
+  if [ "$err" != 0 ]; then
+      HC=4 # red
+      HF=(rev)
+  fi
+
   local lvl=""
   if (( "$SHLVL" != 1 )); then
       lvl="shlvl=$SHLVL "
   fi
-  PS1="${lvl}\[\e]0;\u@\h: \w\a\]\u@\h:\w\$ "
+
+  PS1=""
+  # Titlebar
+  PS1="${PS1}\[\e]0;\u@\h: \w\a\]"
+  # Formatted user@host
+  PS1="${PS1}\[$(_tput_if_set "${HF[@]}")$(_color $HC)\]"
+  PS1="${PS1}${lvl}"
+  PS1="${PS1}\u@\h"
+  PS1="${PS1}\[$(_term_reset)\]"
+  PS1="${PS1}:\w\$ "
 }
-function my_ps1() {
-  local err=$?
-  #if [ $err != 0 ]; then
-  #    play ~/alert.wav >/dev/null 2>&1 &
-  #fi
-
-  if [ -n "$DEMOSH" ]; then
-      unset PROMPT_COMMAND
-      PS1='\n\$ '
-      return
-  fi
-
-  PROMPT_COMMAND=my_ps1
-
-  if ! git root >/dev/null 2>&1; then
-    _default_ps1
-    return
-  fi
+function _git_ps1 {
+  err="$1"
 
   # Change color in case of errors
   local HC=6 # yellow
-  if [ $err != 0 ]; then
+  local HF=() # no formatting
+  if [ "$err" != 0 ]; then
       HC=4 # red
+      HF=(rev)
   fi
 
   # Print shell-level if not 0
@@ -96,11 +105,39 @@ function my_ps1() {
   local B=$(git curbr 2>/dev/null)
   local D=$(realpath . | sed "s|$(git root)/\?|/|")
 
-  PS1="\[$(_color $HC)\]$L$H \[$(_color 1)\]$R \[$(_color 3)\]$S $B $N\[$(_color 6)\]$D\[$(_nocolor)\]\$ "
+  PS1=""
+  PS1="${PS1}\[$(_tput_if_set "${HF[@]}")$(_color $HC)\]"
+  PS1="${PS1}$L$H"
+  PS1="${PS1}\[$(_term_reset)\]"
+  PS1="${PS1} \[$(_color 1)\]$R"
+  PS1="${PS1} \[$(_color 3)\]$S $B $N"
+  PS1="${PS1}\[$(_color 6)\]$D"
+  PS1="${PS1}\[$(_term_reset)\]"
+  PS1="${PS1}\$ "
   _titlebar "git $R$W"
 }
-alias gitps1=my_ps1  # for back-compat
-gitps1  # Always run it
+function my_ps1() {
+  local err=$?
+  #if [ $err != 0 ]; then
+  #    play ~/alert.wav >/dev/null 2>&1 &
+  #fi
+
+  if [ -n "$DEMOSH" ]; then
+      unset PROMPT_COMMAND
+      PS1='\n\$ '
+      return
+  fi
+
+  PROMPT_COMMAND=my_ps1
+
+  if git root >/dev/null 2>&1; then
+    _git_ps1 "$err"
+    return
+  fi
+  _default_ps1 "$err"
+}
+alias config_ps1=my_ps1  # for back-compat
+config_ps1  # Always run it
 
 # Run a demo shell
 alias demosh="DEMOSH=1 bash"
