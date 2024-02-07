@@ -65,6 +65,10 @@ set signcolumn=number           " show errors in the line-num column
 nnoremap n nzz
 nnoremap N Nzz
 
+" diff colors
+hi diffAdded   ctermfg=green
+hi diffRemoved ctermfg=red
+
 " Popup menu colors
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
 highlight PmenuSel ctermfg=15 ctermbg=4 guifg=#ffffff guibg=#000000
