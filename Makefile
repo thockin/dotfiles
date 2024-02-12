@@ -32,6 +32,6 @@ pull:
 
 diff:
 	@for f in $(FILES); do \
-		diff -uN ~/.$$f $$f; \
+		diff -uN ~/.$$f $$f || true; \
 	done
 
