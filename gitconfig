@@ -31,10 +31,18 @@
 	my = "!f() { git log --reverse --no-show-signature --format='format:%C(auto)%h  %s' upstream/$(git mbr)..HEAD; echo;}; f"
 	unstage = restore --staged
 [core]
-	editor="vim +0"
+	editor = "vim +0"
+	excludesFile = ~/.gitignore
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 	renamelimit = 4096
+[push]
+	default = current
+	autoSetupRemote = true
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	colorMovedWS = ignore-space-change
 [http "https://gopkg.in"]
 	followRedirects = true
 [advice]
@@ -59,3 +67,11 @@
 	required = true
 [init]
 	defaultBranch = main
+[url "git@github.com:"]
+	insteadOf = "gh://"
+[transfer]
+	fsckobjects = true
+[fetch]
+	fsckobjects = true
+[receive]
+	fsckObjects = true

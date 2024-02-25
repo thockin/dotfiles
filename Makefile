@@ -4,6 +4,7 @@ all:
 FILES = \
 	bash_aliases \
 	gitconfig \
+	gitignore \
 	ssh/allowed_signers \
 	inputrc \
 	exrc \
