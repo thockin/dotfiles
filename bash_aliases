@@ -114,7 +114,7 @@ function _git_ps1 {
   PS1="${PS1}\[$(_color 6)\]$D"
   PS1="${PS1}\[$(_term_reset)\]"
   PS1="${PS1}\$ "
-  _titlebar "git $R$W"
+  _titlebar "git $R$D"
 }
 function my_ps1() {
   local err=$?
