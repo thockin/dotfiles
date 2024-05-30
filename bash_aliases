@@ -29,6 +29,10 @@ function titlebar {
   _titlebar "$@"
 }
 
+function audio_alert {
+  play ~/alert.wav >/dev/null 2>&1
+}
+
 function _color() {
   tput setf $1
 }
