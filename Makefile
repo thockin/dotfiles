@@ -10,7 +10,8 @@ FILES = \
 	exrc \
 	vimrc \
 	vi/wordlist \
-	config/dlv/config.yml
+	config/dlv/config.yml \
+	config/nvim/init.vim
 
 install:
 	@for f in $(FILES); do \
