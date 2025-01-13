@@ -39,6 +39,10 @@ nnoremap gp :GoDefPop<CR>
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_gopls_binary_path = 'gopls' " use $PATH
 
+" New installs need to do (in vim): :Copilot setup
+Plugin 'github/copilot.vim'
+let g:copilot_workspace_folders = ['~/src/kubernetes', '~/src/git-sync-v4']
+
 call vundle#end()
 
 filetype plugin indent on       " Re-enable filetype detection

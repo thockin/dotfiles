@@ -190,6 +190,40 @@ function g3_root() {
   echo $r/google3
 }
 
+# JQ colors: https://jqlang.github.io/jq/manual/v1.7/#colors
+#
+# This is an array:
+# - color for null
+# - color for false
+# - color for true
+# - color for numbers
+# - color for strings
+# - color for arrays
+# - color for objects
+# - color for object keys
+#
+# Each item is an escape, made of 2 parts.
+#
+# The first:
+# - 0 (normal)
+# - 1 (bright)
+# - 2 (dim)
+# - 4 (underscore)
+# - 5 (blink)
+# - 7 (reverse)
+# - 8 (hidden)
+#
+# The second:
+# - 30 (black)
+# - 31 (red)
+# - 32 (green)
+# - 33 (yellow)
+# - 34 (blue)
+# - 35 (magenta)
+# - 36 (cyan)
+# - 37 (white)
+export JQ_COLORS='1;31:1;33:1;33:1;36:1;32:0;37:0;37:1;34'
+
 # Google env vars.
 export P4CONFIG=.p4config
 #export P4DIFF=/google/src/files/head/depot/google3/devtools/scripts/p4diff

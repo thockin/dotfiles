@@ -31,6 +31,8 @@ nnoremap gp :GoDefPop<CR>
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_gopls_binary_path = 'gopls' " use $PATH
 
+Plugin 'github/copilot.vim'
+
 call vundle#end()
 
 filetype plugin indent on       " Re-enable filetype detection
