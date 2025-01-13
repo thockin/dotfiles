@@ -48,6 +48,8 @@ call vundle#end()
 filetype plugin indent on       " Re-enable filetype detection
 
 set bg=dark                     " I like dark backgrounds
+"hi MatchParen cterm=bold,italic ctermbg=none
+set guicursor=n-v-c-i:block
 set ttyfast                     " Indicate fast terminal conn for faster redraw
 set laststatus=1                " Show status line iff 2+ windows
 set modeline                    " Allow file-embedded modelines
