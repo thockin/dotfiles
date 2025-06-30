@@ -79,6 +79,15 @@ set signcolumn=number           " show errors in the line-num column
 nnoremap n nzz
 nnoremap N Nzz
 
+" colors
+colorscheme pablo
+
+" syntax colors
+highlight Comment guifg=#a0c0ff guibg=NONE gui=NONE cterm=NONE
+highlight LineNr guifg=#afafaf guibg=NONE gui=NONE cterm=NONE
+highlight Type guifg=#60ff60 guibg=NONE gui=NONE cterm=NONE
+highlight Special guifg=#ff8888 guibg=NONE gui=NONE cterm=NONE
+
 " diff colors
 hi diffAdded   ctermfg=green
 hi diffRemoved ctermfg=red
@@ -89,6 +98,7 @@ highlight PmenuSel ctermfg=15 ctermbg=4 guifg=#ffffff guibg=#000000
 
 " Go error messages
 highlight SpellBad term=standout cterm=bold ctermfg=7 ctermbg=1 guifg=White guibg=Red
+
 
 " Keyboard shortcuts
 nnoremap % :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
