@@ -87,10 +87,11 @@ highlight Comment guifg=#a0c0ff guibg=NONE gui=NONE cterm=NONE
 highlight LineNr guifg=#afafaf guibg=NONE gui=NONE cterm=NONE
 highlight Type guifg=#60ff60 guibg=NONE gui=NONE cterm=NONE
 highlight Special guifg=#ff8888 guibg=NONE gui=NONE cterm=NONE
+highlight YcmWarningSection guifg=#ff8844 guibg=NONE gui=NONE cterm=NONE
 
 " diff colors
-hi diffAdded   ctermfg=green
-hi diffRemoved ctermfg=red
+highlight diffAdded   ctermfg=green
+highlight diffRemoved ctermfg=red
 
 " Popup menu colors
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
