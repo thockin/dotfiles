@@ -57,7 +57,7 @@ set hlsearch                    " Highlight search terms
 set showcmd                     " Show last command
 set completeopt=menuone         " Show insertion menu for completions
 set list                        " Show listchars
-set listchars=tab:>-,trail:_    " Render tabs and trailing spaces
+set listchars=tab:»-\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set tabstop=4                   " Tab width
 set shiftwidth=4                " How much to shoft text
 set ai                          " Auto-indent
@@ -83,15 +83,24 @@ nnoremap N Nzz
 colorscheme pablo
 
 " syntax colors
-highlight Comment guifg=#a0c0ff guibg=NONE gui=NONE cterm=NONE
-highlight LineNr guifg=#afafaf guibg=NONE gui=NONE cterm=NONE
-highlight Type guifg=#60ff60 guibg=NONE gui=NONE cterm=NONE
-highlight Special guifg=#ff8888 guibg=NONE gui=NONE cterm=NONE
+highlight Comment           guifg=#a0c0ff guibg=NONE gui=NONE cterm=NONE
+highlight LineNr            guifg=#afafaf guibg=NONE gui=NONE cterm=NONE
+highlight Type              guifg=#60ff60 guibg=NONE gui=NONE cterm=NONE
+highlight Special           guifg=#ff8888 guibg=NONE gui=NONE cterm=NONE
 highlight YcmWarningSection guifg=#ff8844 guibg=NONE gui=NONE cterm=NONE
 
 " diff colors
-highlight diffAdded   ctermfg=green
-highlight diffRemoved ctermfg=red
+highlight diffFile      guifg=#ffff00 guibg=NONE gui=bold cterm=NONE
+highlight diffIndexLine guifg=#ffff00 guibg=NONE gui=NONE cterm=NONE
+highlight diffNewFile   guifg=#00ff00 guibg=NONE gui=NONE cterm=NONE
+highlight diffOldFile   guifg=#ff3300 guibg=NONE gui=NONE cterm=NONE
+highlight diffLine      guifg=#00ffff guibg=NONE gui=NONE cterm=NONE
+highlight diffSubname   guifg=#999999 guibg=NONE gui=NONE cterm=NONE
+highlight diffAdded     guifg=#00ff00 guibg=NONE gui=NONE cterm=NONE
+highlight diffRemoved   guifg=#ff3300 guibg=NONE gui=NONE cterm=NONE
+
+" listchars colors
+highlight Whitespace guifg=#888888 guibg=NONE gui=NONE cterm=NONE
 
 " Popup menu colors
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
