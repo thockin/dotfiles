@@ -73,7 +73,8 @@ set foldmethod=indent           " FIXME: "syntax" is better but suuuuuuper slow
 set nofoldenable
 set foldlevel=50
 set timeoutlen=1000 ttimeoutlen=0 " kill some flicker
-set signcolumn=number           " show errors in the line-num column
+set signcolumn=number           " Show errors in the line-num column
+set guicursor=a:blinkon100      " Blink the cursor
 
 " Center search results
 nnoremap n nzz
@@ -81,6 +82,7 @@ nnoremap N Nzz
 
 " colors
 colorscheme pablo
+highlight CurSearch guifg=yellow guibg=NONE gui=bold
 
 " syntax colors
 highlight Comment           guifg=#a0c0ff guibg=NONE gui=NONE cterm=NONE
