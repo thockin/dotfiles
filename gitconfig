@@ -43,6 +43,8 @@
 	autoSetupRemote = true
 [diff]
 	algorithm = histogram
+	srcPrefix = ""
+	dstPrefix = ""
 	#colorMoved = default
 	#colorMovedWS = ignore-space-change
 [http "https://gopkg.in"]
