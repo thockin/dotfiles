@@ -237,3 +237,7 @@ export DOCKER_CLI_EXPERIMENTAL=enabled
 source ~thockin/google-cloud-sdk/path.bash.inc
 
 [ -f ~/bin/usb-hotplug.sh ] && ~/bin/usb-hotplug.sh
+
+# This file is in git, but we need things that are not appropraite to be
+# checked in.
+source ~thockin/.bash_aliases.private
