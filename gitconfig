@@ -24,15 +24,16 @@
 	pocur = !git po $(git curbr)
 	pofcur = !git po -f $(git curbr)
 	wdiff = diff --color-words
-	track = "!f() { if [ -z \"$1\" ]; then echo 'error: no branch specified' >&2; return 1; fi; git fetch origin $1 && git co -b $1 origin/$1; }; f"
-	retrack = "!f() { if [ -z \"$1\" ]; then echo 'error: no branch specified' >&2; return 1; fi; if [ -n \"$(git br -l $1)\" ]; then git br -D $1 || return 1; fi; git track $1; }; f"
+	safebr = "!f() { git co master || git co main }; f"
+	track = "!f() { if [ -z \"$1\" ]; then echo 'error: no remote or branch specified' >&2; return 1; fi; rmt=upstream. br=$1; if [ -n \"$2\" ]; then rmt=$1; br=$2; fi; git fetch $rmt $br && git co -b $br $rmt/$br; }; f"
+	retrack = "!f() { if [ -z \"$1\" ]; then echo 'error: no remote or branch specified' >&2; return 1; fi; rmt=upstream. br=$1; if [ -n \"$2\" ]; then rmt=$1; br=$2; fi; git safebr; if [ -n \"$(git br -l $br)\" ]; then git br -D $br || return 1; fi; git track $rmt $br; }; f"
 	copr = "!f() { if [ -z \"$1\" ]; then echo 'error: no remote or PR specified' >&2; return 1; fi; rmt=upstream; pr=$1; if [ -n \"$2\" ]; then rmt=$1; pr=$2; fi; git fetch $rmt pull/$pr/head:pr-$rmt-$pr; git co pr-$rmt-$pr;}; f"
-	recopr = "!f() { if [ -z \"$1\" ]; then echo 'error: no remote or PR specified' >&2; return 1; fi; rmt=upstream; pr=$1; if [ -n \"$2\" ]; then rmt=$1; pr=$2; fi; git co master; git br -D pr-$rmt-$pr; git copr $rmt $pr;}; f"
+	recopr = "!f() { if [ -z \"$1\" ]; then echo 'error: no remote or PR specified' >&2; return 1; fi; rmt=upstream; pr=$1; if [ -n \"$2\" ]; then rmt=$1; pr=$2; fi; git safebr; git br -D pr-$rmt-$pr; git copr $rmt $pr;}; f"
 	wip = for-each-ref --sort='committerdate:iso8601' --format=' %(color:green)%(committerdate:relative)%09%(color:white)%(refname:short)' refs/heads
 	my = "!f() { git log --reverse --no-show-signature --format='format:%C(auto)%h  %s' upstream/$(git mbr)..HEAD; echo;}; f"
 	vs = "!f() { up=$1; test -z \"$1\" && up=upstream/$(git mbr); echo $up; git log --reverse --no-show-signature --format='format:%C(auto)%h  %s' ${up}..HEAD; echo;}; f"
 	unstage = restore --staged
-	kys = "!f() { curbr=$(git curbr); echo \"Nuking $curbr\"; sleep 3; git co master && git br -D $curbr; }; f"
+	kys = "!f() { curbr=$(git curbr); echo \"Nuking $curbr\"; sleep 3; git safebr && git br -D $curbr; }; f"
 [core]
 	editor = "vim +0"
 	excludesFile = ~/.gitignore
