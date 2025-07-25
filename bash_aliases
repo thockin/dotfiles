@@ -240,4 +240,4 @@ source ~thockin/google-cloud-sdk/path.bash.inc
 
 # This file is in git, but we need things that are not appropraite to be
 # checked in.
-source ~thockin/.bash_aliases.private
+test -f $HOME/.bash_aliases.private && source $HOME/.bash_aliases.private
