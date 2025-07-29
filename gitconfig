@@ -160,6 +160,9 @@
 	gpgsign = true
 [tag]
 	gpgsign = true
+	sort = -version:refname
+[pull]
+	rebase = true
 [log]
 	showSignature = true
 [filter "lfs"]
