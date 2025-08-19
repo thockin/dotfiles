@@ -16,7 +16,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " New installs need to run :GoInstallBinaries or :GoUpdateBinaries
 Plugin 'fatih/vim-go'
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "goimports_gofmt" " my custom wrapper
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_types = 1

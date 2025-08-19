@@ -54,8 +54,8 @@ function _tput_if_set {
 function _default_ps1 {
   err="$1"
 
-  local HC=6 # color = white
-  local HF=(smul) # formatting = none
+  local HC=6 # color = yellow
+  local HF=(bold smul) # formatting
   if [ "$err" != 0 ]; then
       HC=4 # red
       HF=(rev)
@@ -73,15 +73,17 @@ function _default_ps1 {
   PS1="${PS1}\[$(_tput_if_set "${HF[@]}")$(_color $HC)\]"
   PS1="${PS1}${lvl}"
   PS1="${PS1}\u@\h"
-  PS1="${PS1}:\w\$ "
+  PS1="${PS1}:\w\$"
   PS1="${PS1}\[$(_term_reset)\]"
+  PS1="${PS1} "
+
 }
 function _git_ps1 {
   err="$1"
 
   # Change color in case of errors
   local HC=6 # yellow
-  local HF=() # no formatting
+  local HF=(bold smul)
   if [ "$err" != 0 ]; then
       HC=4 # red
       HF=(rev)
@@ -113,9 +115,9 @@ function _git_ps1 {
   PS1="${PS1}\[$(_tput_if_set "${HF[@]}")$(_color $HC)\]"
   PS1="${PS1}$L$H"
   PS1="${PS1}\[$(_term_reset)\]"
-  PS1="${PS1} \[$(_color 1)\]$R"
-  PS1="${PS1} \[$(_color 3)\]$S $B $N"
-  PS1="${PS1}\[$(_color 6)\]$D"
+  PS1="${PS1} \[$(_tput_if_set "${HF[@]}")$(_color 1)\]$R"
+  PS1="${PS1} \[$(_tput_if_set "${HF[@]}")$(_color 3)\]$S $B $N"
+  PS1="${PS1}\[$(_tput_if_set "${HF[@]}")$(_color 6)\]$D"
   PS1="${PS1}\[$(_term_reset)\]"
   PS1="${PS1}\$ "
   _titlebar "git $R$D"
