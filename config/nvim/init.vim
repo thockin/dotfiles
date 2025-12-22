@@ -153,6 +153,13 @@ au FileType sh setl tabstop=4
 au FileType sh setl shiftwidth=4
 au FileType sh setl list
 
+" ts / react
+au FileType typescriptreact setl tabstop=2
+au FileType typescriptreact setl shiftwidth=2
+au FileType typescriptreact setl expandtab
+au FileType typescriptreact setl number
+au FileType typescriptreact setl list
+
 """-au FileType python setlocal errorformat=%+P[%f],%t:\ %#%l:%m
 """-au FileType python setlocal makeprg=/home/build/static/projects/gpylint/gpylint.par\ %
 """-
