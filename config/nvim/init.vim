@@ -154,6 +154,11 @@ au FileType sh setl shiftwidth=4
 au FileType sh setl list
 
 " ts / react
+au FileType typescript setl tabstop=2
+au FileType typescript setl shiftwidth=2
+au FileType typescript setl expandtab
+au FileType typescript setl number
+au FileType typescript setl list
 au FileType typescriptreact setl tabstop=2
 au FileType typescriptreact setl shiftwidth=2
 au FileType typescriptreact setl expandtab
