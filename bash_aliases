@@ -22,7 +22,7 @@ function field {
 
 ## General environment setup stuff
 function _titlebar {
-  echo -ne "\033]2;"$@"\a"
+  echo -ne "\033]2;""$@""\a"
 }
 function titlebar {
   unset PROMPT_COMMAND
@@ -78,6 +78,7 @@ function _default_ps1 {
   PS1="${PS1} "
 
 }
+GITRAND=$RANDOM
 function _git_ps1 {
   err="$1"
 
@@ -120,7 +121,7 @@ function _git_ps1 {
   PS1="${PS1}\[$(_tput_if_set "${HF[@]}")$(_color 6)\]$D"
   PS1="${PS1}\[$(_term_reset)\]"
   PS1="${PS1}\$ "
-  _titlebar "git $R$D"
+  _titlebar "git $R$D                                   <$GITRAND>"
 }
 function my_ps1() {
   local err=$?
