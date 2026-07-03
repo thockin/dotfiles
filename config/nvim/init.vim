@@ -165,6 +165,18 @@ au FileType typescriptreact setl expandtab
 au FileType typescriptreact setl number
 au FileType typescriptreact setl list
 
+function! FormatProtobuf()
+  let l:my_view = winsaveview()
+  silent! %!clang-format --assume-filename=%
+  call winrestview(l:my_view)
+endfunction
+
+augroup FormatProto
+  autocmd!
+  autocmd BufWritePre *.proto call FormatProtobuf()
+  autocmd BufReadPost *.proto normal! zz
+augroup END
+
 """-au FileType python setlocal errorformat=%+P[%f],%t:\ %#%l:%m
 """-au FileType python setlocal makeprg=/home/build/static/projects/gpylint/gpylint.par\ %
 """-

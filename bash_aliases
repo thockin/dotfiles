@@ -160,7 +160,7 @@ export TERM=xterm
 
 # Golang stuff
 export GOPATH="$HOME/go"
-export PATH="$HOME/bin:$GOPATH/bin:/usr/local/go/bin:$PATH"
+export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/bin:/usr/local/go/bin:$PATH"
 
 ## Google perforce-related stuff
 function g4vi {
