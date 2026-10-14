@@ -60,6 +60,7 @@ set list                        " Show listchars
 set listchars=tab:»-\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set tabstop=4                   " Tab width
 set shiftwidth=4                " How much to shoft text
+set softtabstop=-1              " Auto-match shiftwidth
 set ai                          " Auto-indent
 syn on                          " Syntax highlighting
 set textwidth=78                " Default text width
@@ -167,7 +168,7 @@ au FileType typescriptreact setl list
 
 function! FormatProtobuf()
   let l:my_view = winsaveview()
-  silent! %!clang-format --assume-filename=%
+  silent! %!clang-format --assume-filename=% --style="{BasedOnStyle: LLVM, ColumnLimit: 0}"
   call winrestview(l:my_view)
 endfunction
 

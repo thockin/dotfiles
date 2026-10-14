@@ -8,6 +8,7 @@
 	ci = commit
 	st = status
 	br = branch
+	wt = worktree
 	revert = checkout --
 	amend = commit --amend
 	ama = commit --amend -a
@@ -203,3 +204,9 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/thockin/go/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/thockin/go/bin/gh auth git-credential
