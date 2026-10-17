@@ -157,6 +157,7 @@
 	format = ssh
 [gpg "ssh"]
 	allowedSignersFile = /home/thockin/.ssh/allowed_signers
+	defaultKeyCommand = ssh-add -L
 [commit]
 	gpgsign = true
 [tag]

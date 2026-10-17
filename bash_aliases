@@ -160,7 +160,7 @@ export TERM=xterm
 
 # Golang stuff
 export GOPATH="$HOME/go"
-export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/bin:/usr/local/go/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$GOPATH/bin:/usr/local/go/bin:$PATH"
 
 ## Google perforce-related stuff
 function g4vi {
@@ -244,3 +244,15 @@ source ~thockin/google-cloud-sdk/path.bash.inc
 # This file is in git, but we need things that are not appropraite to be
 # checked in.
 test -f $HOME/.bash_aliases.private && source $HOME/.bash_aliases.private
+
+# Automatically start and manage ssh-agent
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   # Check for an existing agent socket file
+   if [ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
+       export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+   else
+       # Start a new agent bound to a predictable socket path
+       eval "$(ssh-agent -s -a "$XDG_RUNTIME_DIR/ssh-agent.socket")" > /dev/null
+   fi
+fi
+ssh-add ~/.ssh/id_ed25519
