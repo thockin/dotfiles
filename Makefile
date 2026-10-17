@@ -10,6 +10,7 @@ FILES = \
 	exrc \
 	vimrc \
 	vi/wordlist \
+	tmux.conf \
 	config/dlv/config.yml \
 	config/nvim/init.vim
 
