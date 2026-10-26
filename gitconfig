@@ -5,7 +5,7 @@
 	path = ~/.gitconfig.local
 [alias]
 	co = checkout
-	ci = commit
+	ci = commit -s
 	st = status
 	br = branch
 	wt = worktree
