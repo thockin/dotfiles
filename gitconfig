@@ -47,7 +47,7 @@
 	rb = rebase
 	rbup = "!f() { \
 	    echo \"Rebasing onto $(git mbr)\"; \
-	    git rebase upstream/$(git mbr) \"$@\"; \
+	    git rebase --signoff upstream/$(git mbr) \"$@\"; \
 	}; f"
 	po = push origin
 	pocur = !git po $(git curbr)
