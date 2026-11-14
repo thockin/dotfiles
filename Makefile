@@ -1,18 +1,20 @@
 all:
 	@echo "try 'make install'"
 
+# Keep this sorted
 FILES = \
 	bash_aliases \
+	claude/settings.json \
+	config/dlv/config.yml \
+	config/nvim/init.vim \
+	exrc \
 	gitconfig \
 	gitignore \
-	ssh/allowed_signers \
 	inputrc \
-	exrc \
-	vimrc \
-	vi/wordlist \
+	ssh/allowed_signers \
 	tmux.conf \
-	config/dlv/config.yml \
-	config/nvim/init.vim
+	vimrc \
+	vi/wordlist
 
 install:
 	@for f in $(FILES); do \

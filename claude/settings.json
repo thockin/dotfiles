@@ -1,5 +1,11 @@
 {
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "code-review-anthropics@anthropic-plugin-directory": true,
+    "superpowers@anthropic-plugin-directory": true,
+    "claude-review-loop@anthropic-plugin-directory": true
+  },
+  "tui": "default",
   "theme": "dark",
-  "editorMode": "normal",
-  "tui": "default"
+  "editorMode": "normal"
 }
