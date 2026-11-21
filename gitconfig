@@ -27,6 +27,8 @@
 	    fi; \
 	}; f"
 	root = rev-parse --show-toplevel
+	rootroot = "!f() { git worktree list --porcelain | head -n 1 | cut -d' ' -f2; }; f"
+	wtroot = "!f() { leaf=""; [ -n \"$1\" ] && leaf=\"/$1\"; echo \"$(git rootroot)/__wt$leaf\"; }; f"
 	set-upstream = remote set-head upstream
 	reset-upstream = remote set-head upstream --auto
 	head = "!f() { \
@@ -48,6 +50,13 @@
 	rbup = "!f() { \
 	    echo \"Rebasing onto $(git mbr)\"; \
 	    git rebase --signoff upstream/$(git mbr) \"$@\"; \
+	}; f"
+	todo = "!f() { \
+		if [ ! -f .git/rebase-merge/git-rebase-todo ]; then \
+			echo 'error: not in a rebase' >&2; \
+			return 1; \
+		fi; \
+		cat .git/rebase-merge/git-rebase-todo; \
 	}; f"
 	po = push origin
 	pocur = !git po $(git curbr)
@@ -129,6 +138,22 @@
 	    echo \"Nuking $curbr\"; \
 	    sleep 3; \
 	    git safebr && git br -D $curbr; \
+	}; f"
+	mkwt = "!f() { \
+	    if [ -z \"$1\" ]; then \
+	        echo 'error: no branch specified' >&2; \
+	        return 1; \
+	    fi; \
+	    br=$1; \
+	    git wt add "$(git rootroot)/__wt/$br"; \
+	}; f"
+	rmwt = "!f() { \
+	    if [ -z \"$1\" ]; then \
+	       echo 'error: no branch specified' >&2; \
+	       return 1; \
+	    fi; \
+	    br=$1; \
+	    cd "$(git rootroot)" && git wt remove $br; \
 	}; f"
 [core]
 	editor = "vim +0"

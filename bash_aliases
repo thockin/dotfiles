@@ -193,6 +193,20 @@ function g3_root() {
   echo $r/google3
 }
 
+function githome() {
+    cd $(git rootroot)
+}
+
+function chwt() {
+    [ ! -d "$(git wtroot $1)" ] && git mkwt "$@"
+    cd "$(git wtroot $1)"
+}
+
+function rmwt() {
+    cd "$(git rootroot)"
+    git rmwt "$@"
+}
+
 # JQ colors: https://jqlang.github.io/jq/manual/v1.7/#colors
 #
 # This is an array:
