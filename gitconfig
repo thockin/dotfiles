@@ -49,7 +49,7 @@
 	rb = rebase
 	rbup = "!f() { \
 	    echo \"Rebasing onto $(git mbr)\"; \
-	    git rebase --signoff upstream/$(git mbr) \"$@\"; \
+	    git rebase upstream/$(git mbr) \"$@\"; \
 	}; f"
 	todo = "!f() { \
 		if [ ! -f .git/rebase-merge/git-rebase-todo ]; then \
