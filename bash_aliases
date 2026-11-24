@@ -25,7 +25,7 @@ function _titlebar {
   echo -ne "\033]2;""$@""\a"
 }
 function titlebar {
-  unset PROMPT_COMMAND
+  export CUSTOM_TITLEBAR="true"
   _titlebar "$@"
 }
 
@@ -121,7 +121,9 @@ function _git_ps1 {
   PS1="${PS1}\[$(_tput_if_set "${HF[@]}")$(_color 6)\]$D"
   PS1="${PS1}\[$(_term_reset)\]"
   PS1="${PS1}\$ "
-  _titlebar "git $R$D                                   <$GITRAND>"
+  if [ -z "$CUSTOM_TITLEBAR" ]; then
+     _titlebar "git $R$D"
+  fi
 }
 function my_ps1() {
   local err=$?

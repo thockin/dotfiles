@@ -5,13 +5,13 @@
 	path = ~/.gitconfig.local
 [alias]
 	co = checkout
-	ci = commit -s
+	ci = commit --signoff
 	st = status
 	br = branch
 	wt = worktree
 	revert = checkout --
-	amend = commit --amend
-	ama = commit --amend -a
+	amend = commit --amend --signoff
+	ama = commit --amend -a --signoff
 	curbr = "!f() { \
 	    if [ ! -f .git/rebase-merge/head-name ]; then \
 	        git rev-parse --abbrev-ref HEAD; \
