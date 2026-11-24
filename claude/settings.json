@@ -7,5 +7,11 @@
   },
   "tui": "default",
   "theme": "dark",
+  "env": {
+    "ANTHROPIC_DEFAULT_FABLE_MODEL": "claude-fable-5-2",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5-5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5-5",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-5-5"
+  },
   "editorMode": "normal"
 }
